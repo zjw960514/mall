@@ -2,6 +2,7 @@ package com.situ.mall.controller;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -92,12 +93,10 @@ public class CartController {
 		}
 		return cartVo;
 	}
-	
 
 	@RequestMapping("/updateCart")
 	@ResponseBody
-	public ServerResponse updateCart(Integer productId, Integer amount, Boolean isChecked,
-			HttpServletRequest request,
+	public ServerResponse updateCart(Integer productId, Integer amount, Boolean ischecked, HttpServletRequest request,
 			HttpServletResponse response) {
 		// 讲Cookie里面的购物车转换为CartVo对象
 		CartVo cartVo = getCartVoFromCookie(request);
@@ -106,40 +105,62 @@ public class CartController {
 			cartVo = new CartVo();
 		}
 
-		boolean result = addOrUpdateCartVo(productId, amount, cartVo);
+		boolean result = addOrUpdateCartVo(productId, ischecked, amount, cartVo);
 		if (result == false) {
 			return ServerResponse.createError("添加购物车失败");
 		}
-		
-		//将CartVo对象设置到Cookie中
+
+		// 将CartVo对象设置到Cookie中
 		setCartVoToCookie(response, cartVo);
 		return ServerResponse.createSuccess("添加购物车成功");
 	}
-
 
 	@RequestMapping("/addOrUpdateCart")
 	@ResponseBody
-	public ServerResponse addOrUpdateCart(Integer productId, Integer amount, Boolean isChecked,
-			HttpServletRequest request,
-			HttpServletResponse response) {
-		// 讲Cookie里面的购物车转换为CartVo对象
+	public ServerResponse addOrUpdateCart(Integer productId, Integer amount, Boolean ischecked,
+			HttpServletRequest request, HttpServletResponse response) {
+		// 将Cookie里面的购物车转换为CartVo对象
 		CartVo cartVo = getCartVoFromCookie(request);
 		// 原来cookie中没有购物车，所以转换为的CartVo是null。
 		if (cartVo == null) {
 			cartVo = new CartVo();
 		}
 
-		boolean result = addOrUpdateCartVo(productId, amount, cartVo);
+		boolean result = addOrUpdateCartVo(productId, ischecked, amount, cartVo);
 		if (result == false) {
 			return ServerResponse.createError("添加购物车失败");
 		}
-		
-		//将CartVo对象设置到Cookie中
+
+		// 将CartVo对象设置到Cookie中
 		setCartVoToCookie(response, cartVo);
 		return ServerResponse.createSuccess("添加购物车成功");
 	}
-
-	private boolean addOrUpdateCartVo(Integer productId, Integer amount, CartVo cartVo) {
+	@RequestMapping("/delCartItemById")
+	@ResponseBody
+	public ServerResponse delCartItemById(Integer productId , HttpServletResponse response, HttpServletRequest request) {
+		// 将Cookie里面的购物车转换为CartVo对象
+		CartVo cartVo = getCartVoFromCookie(request);
+		// 原来cookie中没有购物车，所以转换为的CartVo是null。
+		if (cartVo == null) {
+			return ServerResponse.createError("获取购物车失败");
+		}
+		//遍历删除指定的id的购物项
+		List<CartItemVo> cartItemVos = cartVo.getCartItemVos();
+		Iterator<CartItemVo> iterator = cartItemVos.iterator();
+		while (iterator.hasNext()) {
+			CartItemVo cartItemVo = iterator.next();
+			if (productId.intValue() == cartItemVo.getProduct().getId().intValue() ) {
+				iterator.remove();
+			}
+		}
+		// 将CartVo对象设置到Cookie中
+		setCartVoToCookie(response, cartVo);
+		return ServerResponse.createSuccess("删除购物车成功");
+	
+	}
+	
+	
+	private boolean addOrUpdateCartVo(Integer productId, Boolean ischecked, Integer amount, CartVo cartVo) {
 		Product productTemp = productService.selectById(productId);
 		boolean isExist = false;
 		// 1、将cartVo里面商品的productId和amount插入cookie
@@ -159,9 +180,15 @@ public class CartController {
 					}
 					item.setAmount(newAmount);
 				}
+				if (ischecked != null) {
+					if (ischecked) {
+						item.setIsChecked(Const.CartChecked.CHECKED);
+					} else {
+						item.setIsChecked(Const.CartChecked.UNCHECKED);
+					}
+				}
 				return true;
 			}
-			
 		}
 		// 在原来的购物车中没有这件商品，就在购物车中添加这件商品
 		if (isExist == false) {
