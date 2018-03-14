@@ -7,46 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>靓淘网</title>
-<style type="text/css">
-
-* {
-               margin: 0;
-               padding: 0;
-           }
-          
-           .Center_contents ul {
-               width: 726px;
-               /*去掉ul中的点*/
-               list-style-type: none;
-               margin: 20px auto;
-               border: 1px solid #ccc;
-           }
-          .Center_contents img {
-          	backgroundcolor:#ccc;
-               width: 200px;
-               height: 200px;
-           }
-          .Center_contents li {
-               border: 1px solid red;
-               padding: 10px;
-               margin: 10px;
-               float: left;
-               background-color: #ccc;
-           }
-          .Center_contents p {
-               text-align: center;
-           }
-           /*为了显示出ul的边框
-            清除对浮动的影响，在哪个元素上加clear就消除浮动对他的影响，
-            会出现在浮动元素的下方*/
-           .Center_contents .clearFloar {
-               clear: both;
-           }
 
 
-
-
-</style>
 <link rel="stylesheet" href="${ctx}/static/front/css/index_style.css" />
 </head>
 
@@ -117,13 +79,15 @@
 	<!-- 图片展示 -->
 	<div class="Center_contents">
 	<c:forEach items="${productList}" var="product">
-	 	<a href="${ctx}/product/getProductDetail.shtml?productId=${product.id}"><ul>
+	 	<a href="${ctx}/product/getProductDetail.shtml?productId=${product.id}">
+	 	<ul>
         	 <li >
                <img src="/pic/${product.mainImage}" alt="" />
                <p>Java</p>
          	</li>
           	<div class="clearFloar"></div>
-       </ul></a>
+       </ul>
+       </a>
      </c:forEach> 
 	</div>
 	
