@@ -154,7 +154,7 @@
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span id="totalPrice" style="color: #F41443;">¥</span></li>
-					<li class="total_right"><a onclick="toAddOrder()">立即结算</a></li>
+					<li class="total_right"><a onclick="toAddOrder()" id="totalPrice">立即结算</a></li>
 				</ul>
 			</div>
 					<div class="sp">

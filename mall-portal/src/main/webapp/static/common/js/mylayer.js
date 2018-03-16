@@ -3,7 +3,7 @@ var mylayer = {
 	success : function(contents) {
 		layer.msg(
 			contents,
-			{icon:1, time:3000}
+			{icon:1, time:3000,offset:'200px'}
 		);
 	},
 	

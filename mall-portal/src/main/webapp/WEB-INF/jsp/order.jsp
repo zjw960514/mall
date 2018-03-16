@@ -146,21 +146,22 @@
 							</div>
 							<div class="box-bd">
 								<div class="clearfix xm-address-list" id="checkoutAddrList">
+								<c:forEach items="${shippings}" var="shippings">
 									 <dl class="item" >
 										<dt>
-											<c:forEach items="${shippings}" var="shippings">
 											<strong class="itemConsignee">
-											${shippings.userId}
+											${shippings.receiverName}
 											</strong>
-											</c:forEach>
+											
 											<span class="itemTag tag">家</span>
 										</dt>
 										<dd>
-											<p class="tel itemTel">188010666666</p>
-											<p class="itemRegion">北京市 海淀区</p>
-											<p class="itemStreet">北京市海淀区双榆树</p>
+											<p class="tel itemTel">${shippings.receiverMobile}</p>
+											<p class="itemRegion">${shippings.receiverProvince}&nbsp;${shippings.receiverCity} </p>
+											<p class="itemStreet">${shippings.receiverProvince}${shippings.receiverCity}${shippings.receiverDistrict}${shippings.receiverAddress}</p>
 											<span class="edit-btn J_editAddr">编辑</span>
 										</dd>
+										</c:forEach>
 										<dd style="display:none">
 											<input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
 										</dd> 
@@ -284,7 +285,7 @@
 								<div class="box-bd">
 									<ul class="checkout-option-list checkout-option-invoice clearfix J_optionList J_optionInvoice">
 										<li class="hide">
-											电子个人发票4
+											电子个人发票
 										</li>
 										<li class="item selected">
 											<!--<label><input type="radio"  class="needInvoice" value="0" name="Checkout[invoice]">不开发票</label>-->
@@ -358,6 +359,7 @@
 											<span class="col col-3">购买数量</span>
 											<span class="col col-4">小计（元）</span>
 										</dt>
+										<c:forEach items="${cartVo.cartItemVos}" var="cartitems">
 										<dd class="item clearfix">
 											<div class="item-row">
 												<div class="col col-1">
@@ -366,16 +368,17 @@
 													</div>
 													<div class="g-info">
 														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
+														${cartitems.product.name}
 														</a>
 													</div>
 												</div>
 
-												<div class="col col-2">39元</div>
-												<div class="col col-3">1</div>
-												<div class="col col-4">39元</div>
+												<div class="col col-2">${cartitems.product.price}</div>
+												<div class="col col-3">${cartitems.amount}</div>
+												<div class="col col-4"  id="topPrice" >${cartitems.product.price*cartitems.amount}元</div>
 											</div>
 										</dd>
+										</c:forEach>
 									</dl>
 									<div class="checkout-count clearfix">
 										<div class="checkout-count-extend xm-add-buy">
@@ -388,7 +391,7 @@
 											<ul>
 
 												<li>
-													订单总额：<span>244元</span>
+													订单总额：<span >$("#topPrice").html()</span>
 												</li>
 												<li>
 													活动优惠：<span>-0元</span>
@@ -404,7 +407,7 @@
 													运费：<span id="postageDesc">0元</span>
 												</li>
 											</ul>
-											<p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
+											<p class="checkout-total">应付总额：<span><strong id="totalPrice">${cartitems.product.price*cartitems.amount}</strong>元</span></p>
 										</div>
 										<!--  -->
 									</div>
@@ -444,7 +447,7 @@
 						<div class="checkout-confirm">
 
 							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<a href="my-apy.html" class="btn btn-primary">立即下单</a>
+							<a  class="btn btn-primary"  onclick="topay()">立即下单</a>
 
 						</div>
 					</div>
@@ -625,6 +628,22 @@
         $(this).removeClass("hover");
         $(this).find(".nav a").removeClass("hover");
     })
+    
+    function topay(productName,productPrice){
+    	$.ajax({
+			url : "${ctx}/order/addOrder.shtml",
+			type : "POST",
+			dataType : "json",
+			data :{'productName':productName,'productPrice':productPrice},
+			success : function(data) {
+				if(data.code == util.SUCCESS) {
+					mylayer.success(data.msg);
+					window.location.href = '${ctx}/order/gettopay.shtml';
+				} 
+			}
+		});
+    	
+    }
 </script>
 
 
