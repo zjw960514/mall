@@ -61,5 +61,12 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 
+	@Override
+	public Integer selectParentCategoryId(Integer categoryId) {
+		/*return categoryMapper.selectByPrimarykKey(categoryId);*/
+		return categoryMapper.selecPartentCategory(categoryId);
+	}
+
+
 	
 }

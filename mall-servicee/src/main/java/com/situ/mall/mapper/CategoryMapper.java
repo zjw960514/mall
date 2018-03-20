@@ -29,4 +29,6 @@ public interface CategoryMapper {
 
 	List<Category> selectSecondCategory(Integer topCategoryId);
 
+	Integer selectByPrimarykKey(Integer category);
+
 }

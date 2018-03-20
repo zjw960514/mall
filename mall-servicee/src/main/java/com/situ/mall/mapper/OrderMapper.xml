@@ -34,7 +34,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.situ.mall.entity.Order" >
-    insert into order (id, order_no, user_id, 
+    insert into order1 (id, order_no, user_id, 
       shipping_id, payment, payment_type, 
       postage, status, payment_time, 
       send_time, end_time, close_time, 
@@ -46,7 +46,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.situ.mall.entity.Order" >
-    insert into order
+    insert into order1
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -198,4 +198,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByPrimarykKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order1
+    where user_id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>华为畅享6S</title>
+		<title>iphone7 plus</title>
 		<link rel="stylesheet" type="text/css" href="${ctx}/static/front/css/detail_style.css" />
 	</head>
 
@@ -117,10 +117,10 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;家电数码&nbsp;&gt;&nbsp;&nbsp;手机通讯&nbsp;&gt;&nbsp;&nbsp;手机&nbsp;&gt;&nbsp;&nbsp;<span style="border: 1px solid #808080;">
 						华为（HUAWEI）
 						<img src="${ctx}/static/front/img/111.png" />
-						</span> &nbsp;&nbsp;&gt;&nbsp;华为畅享6S
+						</span> &nbsp;&nbsp;&gt;&nbsp;iPhone7
 					</li>
 					<li class="little_menu_right">
-						华为官方旗舰店
+						iPhone官方旗舰店
 						<img src="${ctx}/static/front/img/tou.png" /> 联系供应商
 					</li>
 					<li class="little_menu_bottom">
@@ -133,21 +133,21 @@
 			<div class="left">
 				<ul>
 					<li class="banner_center_left_top">
-						<img src="${ctx}/static/front/img/sm1.png" />
+						<img src="/pic/57caddf7b86b40f9f879adc59c6c282f.jpg" />
 					</li>
 					<li class="banner_center_left_center">
 						<ul>
 							<li class="left_right_nav">
-								<img src="${ctx}/static/front/img/left.png" />
+								<img src="/pic/e652c033478c5a90db075de3419d09c5.jpg" />
 							</li>
 							<li class="small_shop">
-								<img src="${ctx}/static/front/img/112.png" />
+								<img src="/pic/db76a838608a87f6bd0276dada517ef8.jpg" />
 							</li>
 							<li class="small_shop">
-								<img src="${ctx}/static/front/img/113.png" />
+								<img src="/pic/e652c033478c5a90db075de3419d09c5.jpg" />
 							</li>
 							<li class="small_shop">
-								<img src="${ctx}/static/front/img/116.png" />
+								<img src="/pic/05532d879de40d011a0bd0893a3c96ec.jpg" />
 							</li>
 							<li class="small_shop">
 								<img src="${ctx}/static/front/img/126.png" />
@@ -168,7 +168,7 @@
 				<ul>
 					<li class="right_1">
 						<span class="title">	
-							华为&nbsp;畅享6S&nbsp;金色&nbsp;移动联通电信4G手机&nbsp;双卡双待
+							${product.name}
 						</span><br />
 						<span class="next_title">
 							骁龙芯片！金属机身！享看又享玩！付款后7天内发货

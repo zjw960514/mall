@@ -67,4 +67,13 @@ public class ProductServiceImpl implements IProductService {
 		return productMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public ServerResponse add(Product product) {
+		int count = productMapper.insert(product);
+		if(count > 0){
+			return ServerResponse.createSuccess("添加成功");
+		}
+		return ServerResponse.createError("添加失败");
+	}
+
 }

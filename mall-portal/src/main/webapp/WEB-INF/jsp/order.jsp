@@ -360,11 +360,11 @@
 											<span class="col col-4">小计（元）</span>
 										</dt>
 										<c:forEach items="${cartVo.cartItemVos}" var="cartitems">
-										<dd class="item clearfix">
+										<dd class="item clearfix" name="num" id="${cartitems.product.id}">
 											<div class="item-row">
 												<div class="col col-1">
 													<div class="g-pic">
-														<img src="${ctx}/static/pay/images/shangpinxiangqing/X1.png" width="40" height="40" />
+														<img src="/pic/57caddf7b86b40f9f879adc59c6c282f.jpg" width="40" height="40" />
 													</div>
 													<div class="g-info">
 														<a href="#" target="_blank">
@@ -375,7 +375,7 @@
 
 												<div class="col col-2">${cartitems.product.price}</div>
 												<div class="col col-3">${cartitems.amount}</div>
-												<div class="col col-4"  id="topPrice" >${cartitems.product.price*cartitems.amount}元</div>
+												<div class="col col-4"  id="topPrice${cartitems.product.id}" >${cartitems.product.price*cartitems.amount}元</div>
 											</div>
 										</dd>
 										</c:forEach>
@@ -391,7 +391,7 @@
 											<ul>
 
 												<li>
-													订单总额：<span >$("#topPrice").html()</span>
+													订单总额：<span id="SumPrice"></span>
 												</li>
 												<li>
 													活动优惠：<span>-0元</span>
@@ -407,7 +407,7 @@
 													运费：<span id="postageDesc">0元</span>
 												</li>
 											</ul>
-											<p class="checkout-total">应付总额：<span><strong id="totalPrice">${cartitems.product.price*cartitems.amount}</strong>元</span></p>
+											<p class="checkout-total">应付总额：<span><strong id="actualPrice">${cartitems.product.price*cartitems.amount}</strong>元</span></p>
 										</div>
 										<!--  -->
 									</div>
@@ -629,21 +629,42 @@
         $(this).find(".nav a").removeClass("hover");
     })
     
-    function topay(productName,productPrice){
-    	$.ajax({
+    layui.use(['layer'],function(){
+			var layer = layui.layer;
+		})
+    
+    $(function(){
+			refreshTotalPrice();
+		})
+    
+    function topay(){
+    	var actualPrice = $('#actualPrice').html();
+    	 $.ajax({
 			url : "${ctx}/order/addOrder.shtml",
 			type : "POST",
+			data :{'shippingId':'${shippings[0].id}','actualPrice':actualPrice},
 			dataType : "json",
-			data :{'productName':productName,'productPrice':productPrice},
 			success : function(data) {
 				if(data.code == util.SUCCESS) {
 					mylayer.success(data.msg);
-					window.location.href = '${ctx}/order/gettopay.shtml';
+					window.location.href = '${ctx}/order/getOrderInfo.shtml';
 				} 
 			}
-		});
-    	
+		}); 
     }
+    
+    function refreshTotalPrice(){
+		var count = $('dd[name=num]');
+		var  totalPrice = 0.00;
+		for(var i = 0 ; i < count.length ; i++ ){
+			//checkbox268  substr截取需要的id
+			var id =count[i].getAttribute('id');
+			var TotalPrice = $('#topPrice'+ id).html();
+			totalPrice += parseFloat(TotalPrice);
+		}
+		$('#SumPrice').html(totalPrice);
+		$('#actualPrice').html(totalPrice );
+	}
 </script>
 
 

@@ -17,5 +17,7 @@ public interface ICategoryService {
 	List<Category> selectTopCategoryList();
 
 	List<Category> selectSecondCategoryList();
+
+	Integer selectParentCategoryId(Integer categoryId);
 	
 }

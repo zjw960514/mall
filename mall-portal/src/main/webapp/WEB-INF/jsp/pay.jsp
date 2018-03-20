@@ -213,9 +213,9 @@
 				<div class="fl"><a href="#"><img src="${ctx}/static/pay/img/mem.png"></a></div>
 				<div class="fl">
 					<p>用户名：</p>
-					<p><a href="#">亚里士多德</a></p>
+					<p><a href="#">${user.username}</a></p>
 					<p>搜悦号：</p>
-					<p>389323080</p>
+					<p>${user.id}</p>
 				</div>
 			</div>
 			<div class="member-lists">
@@ -267,210 +267,39 @@
 					</div>
 					<div class="member-sheet clearfix">
 						<ul>
+							<c:forEach items="${list}" var ="order">
 							<li>
+							
 								<div class="member-minute clearfix">
 									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
+									<span>订单号：<em>${order.orderNo}</em></span>
 									<span><a href="#">以纯甲醇旗舰店</a></span>
 									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
 								</div>
 								<div class="member-circle clearfix">
 									<div class="ci1">
+										<c:forEach items="${order.orderItems}" var="orderitem"> 
+										<c:if test="${orderitem.orderNo==order.orderNo}">
 										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
+											<span class="gr1"><a href="#"><img src="/pic/${orderitem.productImage}" title="" about="" width="60" height="60"></a></span>
+											<span class="gr2"><a href="#">${orderitem.productName} </a></span>
 											<span class="gr3">X1</span>
 										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
+										</c:if>
+									    </c:forEach>
 									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
+									<div class="ci2">${order.receiverName}</div>
+									<div class="ci3"><b>${order.payment}</b><p>货到付款</p><p class="iphone">手机订单</p></div>
+									<div class="ci4"><p>${order.createTime}</p></div>
 									<div class="ci5"><p>等待付款</p> <p><a href="#">物流跟踪</a></p> <p><a href="#">订单详情</a></p></div>
 									<div class="ci5 ci8"><p>剩余15时20分</p> <p><a href="#" class="member-touch">立即支付</a> </p> <p><a href="#">取消订单</a> </p></div>
 								</div>
 							</li>
-							<li>
-								<div class="member-minute clearfix">
-									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
-									<span><a href="#">以纯甲醇旗舰店</a></span>
-									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
-								</div>
-								<div class="member-circle clearfix">
-									<div class="ci1">
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
-											<span class="gr3">X1</span>
-										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
-									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
-									<div class="ci5"><p>等待卖家发货 </p> <p><a href="#">订单详情</a></p></div>
-									<div class="ci5 ci8"><p><a href="#" class="member-touch">提醒发货</a> </p> <p><a href="#">取消订单</a> </p></div>
-								</div>
-							</li>
-							<li>
-								<div class="member-minute clearfix">
-									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
-									<span><a href="#">以纯甲醇旗舰店</a></span>
-									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
-								</div>
-								<div class="member-circle clearfix">
-									<div class="ci1">
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
-											<span class="gr3">X1</span>
-										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
-									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
-									<div class="ci5"><p>已完成</p> <p><a href="#">订单详情</a></p></div>
-									<div class="ci5 ci8"><p><a href="#">查看</a></p> <p></p><p><a href="#" class="member-touch">确认收货</a></p></div>
-								</div>
-							</li>
-							<li>
-								<div class="member-minute clearfix">
-									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
-									<span><a href="#">以纯甲醇旗舰店</a></span>
-									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
-								</div>
-								<div class="member-circle clearfix">
-									<div class="ci1">
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
-											<span class="gr3">X1</span>
-										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="${ctx}/static/pay/images/shangpinxiangqing/X-1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
-									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
-									<div class="ci5"><p>已完成</p> <p><a href="#">订单详情</a></p></div>
-									<div class="ci5 ci8"><p><a href="#">查看</a> | <a href="#">删除</a></p> <p></p><p><a href="#" class="member-touch">确认收货</a></p></div>
-								</div>
-							</li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
-				<div class="member-return H-over" style="display:none;">
-					<div class="member-cancel clearfix">
-						<span class="be1">订单信息</span>
-						<span class="be2">收货人</span>
-						<span class="be2">订单金额</span>
-						<span class="be2">订单时间</span>
-						<span class="be2">订单状态</span>
-						<span class="be2">订单操作</span>
-					</div>
-					<div class="member-sheet clearfix">
-						<ul>
-							<li>
-								<div class="member-minute clearfix">
-									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
-									<span><a href="#">以纯甲醇旗舰店</a></span>
-									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
-								</div>
-								<div class="member-circle clearfix">
-									<div class="ci1">
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="../theme/${ctx}/static/pay/img/pd/m1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
-											<span class="gr3">X1</span>
-										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="../theme/${ctx}/static/pay/img/pd/m2.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
-									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
-									<div class="ci5"><p>已申请退货</p> <p><a href="#">退货日志</a></p></div>
-									<div class="ci6"><p><a href="#">取消退货</a> </p></div>
-								</div>
-							</li>
-							<li>
-								<div class="member-minute clearfix">
-									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
-									<span><a href="#">以纯甲醇旗舰店</a></span>
-									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
-								</div>
-								<div class="member-circle clearfix">
-									<div class="ci1">
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="../theme/${ctx}/static/pay/img/pd/m1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
-											<span class="gr3">X1</span>
-										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="../theme/${ctx}/static/pay/img/pd/m2.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
-									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
-									<div class="ci5"><p>已完成</p> <p><a href="#">订单详情</a></p></div>
-									<div class="ci6"><p><a href="#">取消退货</a> </p></div>
-								</div>
-							</li>
-							<li>
-								<div class="member-minute clearfix">
-									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
-									<span><a href="#">以纯甲醇旗舰店</a></span>
-									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
-								</div>
-								<div class="member-circle clearfix">
-									<div class="ci1">
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="../theme/${ctx}/static/pay/img/pd/m1.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">红米Note2 标准版 白色 移动4G手机 双卡双待</a></span>
-											<span class="gr3">X1</span>
-										</div>
-										<div class="ci7 clearfix">
-											<span class="gr1"><a href="#"><img src="../theme/${ctx}/static/pay/img/pd/m2.png" title="" about="" width="60" height="60"></a></span>
-											<span class="gr2"><a href="#">AXON天机mini NBA限量版</a></span>
-											<span class="gr3">X9</span>
-										</div>
-									</div>
-									<div class="ci2">张子琪</div>
-									<div class="ci3"><b>￥120.00</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>2015-09-22</p></div>
-									<div class="ci5"><p>已完成</p> <p><a href="#">订单详情</a></p></div>
-									<div class="ci6"><p><a href="#">取消退货</a> </p></div>
-								</div>
-							</li>
-						</ul>
+				
 					</div>
 				</div>
 				<div class="H-over member-over" style="display:none;"><h2>待发货</h2></div>

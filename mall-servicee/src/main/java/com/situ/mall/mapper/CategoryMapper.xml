@@ -15,11 +15,14 @@
   <sql id="Base_Column_List" >
     id, parent_id, name, status, sort_order, create_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
+  <select id="selectByPrimarykKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   <!--  select 
+    parent_id
     from category
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{category} -->
+    select parent_id
+  	from category
+  	where id=#{category}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from category
@@ -138,8 +141,8 @@
     where parent_id!=0
   </select>
   
-  <select id="selectPartentCategory" parameterType="int" resultMap="BaseResultMap">
-  	select parent_id
+  <select id="selecPartentCategory" parameterType="int" resultMap="BaseResultMap">
+  	select parent_id‘
   	from category
   	where id=#{categoryId}
   </select>

@@ -106,7 +106,7 @@
 						</c:if>
 					</div>
 					<div class="car_con_2">
-						<img src="${ctx}/static/front/img/159.png" />
+						<img src="/pic/57caddf7b86b40f9f879adc59c6c282f.jpg" style="width:60px" />
 					</div>
 					<div class="car_con_3">
 						<p class="p_title">${cartItemVo.product.name}</p>
@@ -143,7 +143,7 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-		</c:forEach>
+		</c:forEach>                                                              
 		
 		<div class="blank">
 		</div>
@@ -370,6 +370,7 @@
 		layui.use(['layer'],function(){
 			var layer = layui.layer;
 		})
+		
 		$(function(){
 			refreshTotalPrice();
 		})

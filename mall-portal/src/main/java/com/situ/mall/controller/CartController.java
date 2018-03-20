@@ -206,7 +206,7 @@ public class CartController {
 	 * 将CartVo对象中购物车信息设置到Cookie中
 	 * 
 	 */
-	private void setCartVoToCookie(HttpServletResponse response, CartVo cartVo) {
+	public void setCartVoToCookie(HttpServletResponse response, CartVo cartVo) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		// 只有对象不为null的才转换并展示
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
